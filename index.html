@@ -1,64 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Explorateur d’Automatisations IA</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background-color: #000; /* fond noir */
-      color: #fff; /* texte blanc */
       font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      background-color: #000;
+      color: #fff;
     }
-
     h1 {
+      color: #fff;
       text-align: center;
-      padding: 30px 20px 10px;
     }
-
-    .container {
+    p {
+      text-align: center;
+      color: #ccc;
+    }
+    .grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 20px;
       gap: 20px;
     }
-
     .category {
-      width: 45%;
       background-color: #111;
-      border: 1px solid #444;
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 20px;
-      box-shadow: 0 0 10px #222;
+      width: 45%;
     }
-
     .category h2 {
-      margin: 0 0 10px;
       cursor: pointer;
+      background: #222;
       padding: 10px;
-      background-color: #222;
       border-radius: 5px;
+      margin: 0 0 10px;
     }
-
     .files {
       display: none;
-      margin-top: 10px;
+      margin-left: 10px;
     }
-
     .files a {
       display: block;
       margin: 5px 0;
-      color: #00ccff;
       text-decoration: none;
+      color: #00ccff;
     }
-
     .files a:hover {
       text-decoration: underline;
     }
@@ -66,30 +57,100 @@
   <script>
     function toggle(id) {
       var el = document.getElementById(id);
-      el.style.display = el.style.display === "none" ? "block" : "none";
+      el.style.display = el.style.display === 'none' ? 'block' : 'none';
     }
   </script>
 </head>
 <body>
   <h1>📁 Explorateur d’Automatisations IA</h1>
-  <div class="container">
-    <!-- Catégorie 1 -->
+  <p>Choisissez une catégorie pour afficher les automatisations disponibles :</p>
+  <div class="grid">
+
     <div class="category">
-      <h2 onclick="toggle('cat1')">Gmail_and_Email_Automation</h2>
-      <div class="files" id="cat1">
-        <a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/A%20Very%20Simple%20_Human%20in%20the%20Loop_%20Email%20Response%20System%20Using%20AI%20and%20IMAP.txt" target="_blank">A Very Simple Email System</a>
-        <a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/AI-powered%20email%20processing%20autoresponder%20and%20response%20approval%20(Yes_No).txt" target="_blank">AI-powered Autoresponder</a>
-        <a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/Analyze%20&%20Sort%20Suspicious%20Email%20Contents%20with%20ChatGPT.txt" target="_blank">Sort Suspicious Emails</a>
+      <h2 onclick="toggle('cat0')">Gmail_and_Email_Automation</h2>
+      <div class="files" id="cat0">
+        <a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/A%20Very%20Simple%20_Human%20in%20the%20Loop_%20Email%20Response%20System%20Using%20AI%20and%20IMAP.txt" target="_blank">A Very Simple _Human in the Loop_ Email Response System Using AI and IMAP.txt</a>
+        <a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/AI-powered%20email%20processing%20autoresponder%20and%20response%20approval%20(Yes_No).txt" target="_blank">AI-powered email processing autoresponder and response approval (Yes_No).txt</a>
+        <a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/Analyze%20&%20Sort%20Suspicious%20Email%20Contents%20with%20ChatGPT.txt" target="_blank">Analyze & Sort Suspicious Email Contents with ChatGPT.txt</a>
       </div>
     </div>
 
-    <!-- Catégorie 2 -->
+    <!-- Autres catégories avec message temporaire -->
     <div class="category">
-      <h2 onclick="toggle('cat2')">WhatsApp</h2>
-      <div class="files" id="cat2">
-        <a href="#">Template 1</a>
-        <a href="#">Template 2</a>
-      </div>
+      <h2 onclick="toggle('cat1')">Google_Drive_and_Google_Sheets</h2>
+      <div class="files" id="cat1"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat2')">Instagram_Twitter_Social_Media</h2>
+      <div class="files" id="cat2"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat3')">OpenAI_and_LLMs</h2>
+      <div class="files" id="cat3"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat4')">WhatsApp</h2>
+      <div class="files" id="cat4"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat5')">WordPress</h2>
+      <div class="files" id="cat5"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat6')">AI_Research_RAG_and_Data_Analysis</h2>
+      <div class="files" id="cat6"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat7')">Airtable</h2>
+      <div class="files" id="cat7"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat8')">Database_and_Storage</h2>
+      <div class="files" id="cat8"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat9')">Discord</h2>
+      <div class="files" id="cat9"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat10')">Forms_and_Surveys</h2>
+      <div class="files" id="cat10"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat11')">HR_and_Recruitment</h2>
+      <div class="files" id="cat11"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat12')">Notion</h2>
+      <div class="files" id="cat12"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat13')">Other</h2>
+      <div class="files" id="cat13"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat14')">Other_Integrations_and_Use_Cases</h2>
+      <div class="files" id="cat14"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat15')">PDF_and_Document_Processing</h2>
+      <div class="files" id="cat15"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat16')">Slack</h2>
+      <div class="files" id="cat16"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat17')">Telegram</h2>
+      <div class="files" id="cat17"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat18')">img</h2>
+      <div class="files" id="cat18"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
+    </div>
+    <div class="category">
+      <h2 onclick="toggle('cat19')">AI product imagines</h2>
+      <div class="files" id="cat19"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
     </div>
   </div>
 </body>
