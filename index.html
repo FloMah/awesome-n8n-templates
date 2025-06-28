@@ -2,79 +2,73 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Explorateur d’Automatisations IA</title>
+  <title>📂 Explorateur d'Automatisations IA</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; color: #333; }
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
     h1 { color: #222; }
-    .disclaimer { background: #eee; padding: 10px; border-radius: 5px; margin-bottom: 20px; font-size: 0.9em; }
-    .category { margin-bottom: 40px; }
-    .category h2 { cursor: pointer; background: #ddd; padding: 10px; border-radius: 5px; }
-    table { border-collapse: collapse; width: 100%; margin-top: 10px; display: none; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f0f0f0; }
-    a { color: #0066cc; text-decoration: none; }
+    h2 { color: #0051ff; cursor: pointer; margin-top: 30px; }
+    ul { list-style-type: none; padding: 0 0 0 20px; display: none; }
+    li { margin-bottom: 5px; }
+    a { text-decoration: none; color: #0066cc; }
     a:hover { text-decoration: underline; }
+    .folder { margin-bottom: 20px; }
   </style>
-  <script>
-    function toggle(id) {
-      const el = document.getElementById(id);
-      el.style.display = (el.style.display === 'none') ? 'table' : 'none';
-    }
-  </script>
 </head>
 <body>
+  <h1>🚀 Automatisations IA – GitHub Explorer</h1>
+  <p>Clique sur une catégorie pour afficher les automatisations disponibles :</p>
 
-  <h1>📁 Explorateur d’Automatisations IA</h1>
-  <div class="disclaimer">
-    <p><strong>Source :</strong> Ce projet est basé sur <a href="https://github.com/FloMah/awesome-n8n-templates" target="_blank">awesome-n8n-templates</a>.</p>
-    <p><strong>Disclaimer :</strong> Ce site est une interface de navigation simplifiée. Aucune garantie n’est donnée sur la sécurité ou la mise à jour des scripts fournis.</p>
-  </div>
+  <div id="content">Chargement…</div>
 
-  <div class="category">
-    <h2 onclick="toggle('gmail_automation')">📧 Gmail & Email Automation</h2>
-    <table id="gmail_automation">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Department</th>
-          <th>Link</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Auto-label incoming Gmail messages with AI nodes</td>
-          <td>Automatically labels incoming Gmail messages using AI for better organization.</td>
-          <td>Ops</td>
-          <td><a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/Auto-label%20incoming%20Gmail%20messages%20with%20AI%20nodes.txt" target="_blank">Template</a></td>
-        </tr>
-        <tr>
-          <td>Basic Automatic Gmail Email Labelling with OpenAI and Gmail API</td>
-          <td>Classifies and labels emails automatically via OpenAI and Gmail API.</td>
-          <td>Ops</td>
-          <td><a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/Basic%20Automatic%20Gmail%20Email%20Labelling%20with%20OpenAI%20and%20Gmail%20API.txt" target="_blank">Template</a></td>
-        </tr>
-        <tr>
-          <td>AI-powered email processing autoresponder</td>
-          <td>Analyzes email and generates replies using OpenAI, with human approval.</td>
-          <td>Support</td>
-          <td><a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/AI-powered%20email%20processing%20autoresponder%20and%20response%20approval%20(Yes_No).txt" target="_blank">Template</a></td>
-        </tr>
-        <tr>
-          <td>A Very Simple _Human in the Loop_ Email Response System</td>
-          <td>Simple approval flow with OpenAI-generated replies.</td>
-          <td>Support</td>
-          <td><a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/A%20Very%20Simple%20_Human%20in%20the%20Loop_%20Email%20Response%20System%20Using%20AI%20and%20IMAP.txt" target="_blank">Template</a></td>
-        </tr>
-        <tr>
-          <td>Analyze & Sort Suspicious Email Contents</td>
-          <td>Flags and classifies suspicious email content using ChatGPT.</td>
-          <td>Security</td>
-          <td><a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/Analyze%20&%20Sort%20Suspicious%20Email%20Contents%20with%20ChatGPT.txt" target="_blank">Template</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <script>
+    const repo = 'FloMah/awesome-n8n-templates';
+    const apiURL = `https://api.github.com/repos/${repo}/contents/`;
 
+    async function fetchFolder(path = '') {
+      const res = await fetch(apiURL + path);
+      return res.ok ? res.json() : [];
+    }
+
+    function decodeName(name) {
+      return decodeURIComponent(name.replace('.txt', '').replace(/_/g, ' '));
+    }
+
+    async function listContent() {
+      const rootFolders = await fetchFolder();
+      const contentDiv = document.getElementById('content');
+      contentDiv.innerHTML = '';
+
+      for (const folder of rootFolders) {
+        if (folder.type === 'dir') {
+          const section = document.createElement('div');
+          section.className = 'folder';
+
+          const title = document.createElement('h2');
+          title.textContent = folder.name.replace(/_/g, ' ');
+          title.onclick = () => {
+            const ul = section.querySelector('ul');
+            ul.style.display = (ul.style.display === 'none') ? 'block' : 'none';
+          };
+
+          const ul = document.createElement('ul');
+
+          const subItems = await fetchFolder(folder.path);
+          for (const file of subItems) {
+            if (file.name.endsWith('.txt')) {
+              const li = document.createElement('li');
+              li.innerHTML = `<a href="${file.html_url}" target="_blank">${decodeName(file.name)}</a>`;
+              ul.appendChild(li);
+            }
+          }
+
+          section.appendChild(title);
+          section.appendChild(ul);
+          contentDiv.appendChild(section);
+        }
+      }
+    }
+
+    listContent();
+  </script>
 </body>
 </html>
