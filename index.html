@@ -1,74 +1,35 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>📂 Explorateur d'Automatisations IA</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
-    h1 { color: #222; }
-    h2 { color: #0051ff; cursor: pointer; margin-top: 30px; }
-    ul { list-style-type: none; padding: 0 0 0 20px; display: none; }
-    li { margin-bottom: 5px; }
-    a { text-decoration: none; color: #0066cc; }
-    a:hover { text-decoration: underline; }
-    .folder { margin-bottom: 20px; }
-  </style>
-</head>
-<body>
-  <h1>🚀 Automatisations IA – GitHub Explorer</h1>
-  <p>Clique sur une catégorie pour afficher les automatisations disponibles :</p>
+<script>
+  async function listFromMetadata() {
+    const res = await fetch('https://raw.githubusercontent.com/FloMah/awesome-n8n-templates/main/metadata.json');
+    const data = await res.json();
 
-  <div id="content">Chargement…</div>
+    const contentDiv = document.getElementById('content');
+    contentDiv.innerHTML = '';
 
-  <script>
-    const repo = 'FloMah/awesome-n8n-templates';
-    const apiURL = `https://api.github.com/repos/${repo}/contents/`;
+    for (const category in data) {
+      const section = document.createElement('div');
+      section.innerHTML = `<h2>${category}</h2>
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr><th>Title</th><th>Description</th><th>Department</th><th>Link</th></tr>
+        </table>`;
+      const table = section.querySelector('table');
 
-    async function fetchFolder(path = '') {
-      const res = await fetch(apiURL + path);
-      return res.ok ? res.json() : [];
+      data[category].forEach(item => {
+        const row = document.createElement('tr');
+        const filePath = encodeURIComponent(item.file).replace(/%20/g, '+');
+        const url = `https://github.com/FloMah/awesome-n8n-templates/blob/main/${category}/${filePath}`;
+        row.innerHTML = `
+          <td>${item.title}</td>
+          <td>${item.description}</td>
+          <td>${item.department}</td>
+          <td><a href="${url}" target="_blank">Link</a></td>
+        `;
+        table.appendChild(row);
+      });
+
+      contentDiv.appendChild(section);
     }
+  }
 
-    function decodeName(name) {
-      return decodeURIComponent(name.replace('.txt', '').replace(/_/g, ' '));
-    }
-
-    async function listContent() {
-      const rootFolders = await fetchFolder();
-      const contentDiv = document.getElementById('content');
-      contentDiv.innerHTML = '';
-
-      for (const folder of rootFolders) {
-        if (folder.type === 'dir') {
-          const section = document.createElement('div');
-          section.className = 'folder';
-
-          const title = document.createElement('h2');
-          title.textContent = folder.name.replace(/_/g, ' ');
-          title.onclick = () => {
-            const ul = section.querySelector('ul');
-            ul.style.display = (ul.style.display === 'none') ? 'block' : 'none';
-          };
-
-          const ul = document.createElement('ul');
-
-          const subItems = await fetchFolder(folder.path);
-          for (const file of subItems) {
-            if (file.name.endsWith('.txt')) {
-              const li = document.createElement('li');
-              li.innerHTML = `<a href="${file.html_url}" target="_blank">${decodeName(file.name)}</a>`;
-              ul.appendChild(li);
-            }
-          }
-
-          section.appendChild(title);
-          section.appendChild(ul);
-          contentDiv.appendChild(section);
-        }
-      }
-    }
-
-    listContent();
-  </script>
-</body>
-</html>
+  listFromMetadata();
+</script>
