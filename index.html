@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Explorateur d’Automatisations IA</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+        h1 { color: #222; }
+        .category { margin-bottom: 30px; }
+        .category h2 { cursor: pointer; background: #eee; padding: 10px; border-radius: 5px; }
+        .files { display: none; margin-left: 20px; }
+        .files a { display: block; margin: 5px 0; text-decoration: none; color: #0066cc; }
+        .files a:hover { text-decoration: underline; }
+    </style>
+    <script>
+        function toggle(id) {
+            var el = document.getElementById(id);
+            el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <h1>📁 Explorateur d’Automatisations IA</h1>
+    <p>Choisissez une catégorie pour afficher les automatisations disponibles :</p>
+<div class="category">
+  <h2 onclick="toggle('cat0')">Gmail_and_Email_Automation</h2>
+  <div class="files" id="cat0">
+    <a href="https://github.com/mon-utilisateur/mon-depot/blob/main/Gmail_and_Email_Automation/A%20Very%20Simple%20_Human%20in%20the%20Loop_%20Email%20Response%20System%20Using%20AI%20and%20IMAP.txt" target="_blank">A Very Simple _Human in the Loop_ Email Response System Using AI and IMAP.txt</a>
+    <a href="https://github.com/mon-utilisateur/mon-depot/blob/main/Gmail_and_Email_Automation/AI-powered%20email%20processing%20autoresponder%20and%20response%20approval%20(Yes_No).txt" target="_blank">AI-powered email processing autoresponder and response approval (Yes_No).txt</a>
+    <a href="https://github.com/mon-utilisateur/mon-depot/blob/main/Gmail_and_Email_Automation/Analyze%20&%20Sort%20Suspicious%20Email%20Contents%20with%20ChatGPT.txt" target="_blank">Analyze & Sort Suspicious Email Contents with ChatGPT.txt</a>
+  </div>
+</div>
+<div class="category">
+  <h2 onclick="toggle('cat1')">Google_Drive_and_Google_Sheets</h2>
+  <div class="files" id="cat1">
+  </div>
+</div>
+<div class="category">
+  <h2 onclick="toggle('cat2')">Instagram_Twitter_Social_Media</h2>
+  <div class="files" id="cat2">
+  </div>
+</div>
+<div class="category">
+  <h2 onclick="toggle('cat3')">OpenAI_and_LLMs</h2>
+  <div class="files" id="cat3">
+  </div>
+</div>
+<div class="category">
+  <h2 onclick="toggle('cat4')">WhatsApp</h2>
+  <div class="files" id="cat4">
+  </div>
+</div>
+<div class="category">
+  <h2 onclick="toggle('cat5')">WordPress</h2>
+  <div class="files" id="cat5">
+  </div>
+</div>
+</body>
+</html>
