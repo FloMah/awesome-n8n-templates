@@ -1,157 +1,76 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Explorateur d’Automatisations IA</title>
+  <meta charset="UTF-8" />
+  <title>Explorateur d'Automatisations IA</title>
   <style>
-    * { box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px;
-      min-height: 100vh;
+      padding: 40px;
       background-color: #000;
+      color: white;
+    }
+    h1, h2 {
       color: #fff;
     }
-    h1 {
-      color: #fff;
-      text-align: center;
-    }
-    p {
-      text-align: center;
-      color: #ccc;
-    }
-    .grid {
+    .container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      gap: 40px;
     }
     .category {
-      background-color: #111;
-      border-radius: 10px;
+      flex: 1 1 45%;
+      background: #111;
       padding: 20px;
-      width: 45%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #333;
     }
-    .category h2 {
-      cursor: pointer;
-      background: #222;
-      padding: 10px;
-      border-radius: 5px;
-      margin: 0 0 10px;
-    }
-    .files {
-      display: none;
-      margin-left: 10px;
-    }
-    .files a {
-      display: block;
-      margin: 5px 0;
+    .category a {
+      color: #4fc3f7;
       text-decoration: none;
-      color: #00ccff;
     }
-    .files a:hover {
+    .category a:hover {
       text-decoration: underline;
     }
-  </style>
-  <script>
-    function toggle(id) {
-      var el = document.getElementById(id);
-      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    .disclaimer {
+      margin-bottom: 40px;
+      padding: 20px;
+      background: #111;
+      border-left: 5px solid #4fc3f7;
     }
-  </script>
+  </style>
 </head>
 <body>
-  <h1>📁 Explorateur d’Automatisations IA</h1>
-  <p>Choisissez une catégorie pour afficher les automatisations disponibles :</p>
-  <div class="grid">
 
-    <div class="category">
-      <h2 onclick="toggle('cat0')">Gmail_and_Email_Automation</h2>
-      <div class="files" id="cat0">
-        <a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/A%20Very%20Simple%20_Human%20in%20the%20Loop_%20Email%20Response%20System%20Using%20AI%20and%20IMAP.txt" target="_blank">A Very Simple _Human in the Loop_ Email Response System Using AI and IMAP.txt</a>
-        <a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/AI-powered%20email%20processing%20autoresponder%20and%20response%20approval%20(Yes_No).txt" target="_blank">AI-powered email processing autoresponder and response approval (Yes_No).txt</a>
-        <a href="https://github.com/FloMah/awesome-n8n-templates/blob/main/Gmail_and_Email_Automation/Analyze%20&%20Sort%20Suspicious%20Email%20Contents%20with%20ChatGPT.txt" target="_blank">Analyze & Sort Suspicious Email Contents with ChatGPT.txt</a>
-      </div>
-    </div>
-
-    <!-- Autres catégories avec message temporaire -->
-    <div class="category">
-      <h2 onclick="toggle('cat1')">Google_Drive_and_Google_Sheets</h2>
-      <div class="files" id="cat1"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat2')">Instagram_Twitter_Social_Media</h2>
-      <div class="files" id="cat2"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat3')">OpenAI_and_LLMs</h2>
-      <div class="files" id="cat3"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat4')">WhatsApp</h2>
-      <div class="files" id="cat4"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat5')">WordPress</h2>
-      <div class="files" id="cat5"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat6')">AI_Research_RAG_and_Data_Analysis</h2>
-      <div class="files" id="cat6"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat7')">Airtable</h2>
-      <div class="files" id="cat7"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat8')">Database_and_Storage</h2>
-      <div class="files" id="cat8"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat9')">Discord</h2>
-      <div class="files" id="cat9"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat10')">Forms_and_Surveys</h2>
-      <div class="files" id="cat10"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat11')">HR_and_Recruitment</h2>
-      <div class="files" id="cat11"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat12')">Notion</h2>
-      <div class="files" id="cat12"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat13')">Other</h2>
-      <div class="files" id="cat13"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat14')">Other_Integrations_and_Use_Cases</h2>
-      <div class="files" id="cat14"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat15')">PDF_and_Document_Processing</h2>
-      <div class="files" id="cat15"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat16')">Slack</h2>
-      <div class="files" id="cat16"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat17')">Telegram</h2>
-      <div class="files" id="cat17"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat18')">img</h2>
-      <div class="files" id="cat18"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
-    <div class="category">
-      <h2 onclick="toggle('cat19')">AI product imagines</h2>
-      <div class="files" id="cat19"><span style="color:#666;">Aucun fichier listé pour l’instant</span></div>
-    </div>
+  <div class="disclaimer">
+    <p><strong>Source :</strong> Ce projet est basé sur <a href="https://github.com/FloMah/awesome-n8n-templates" target="_blank" style="color:#4fc3f7;">awesome-n8n-templates</a> maintenu par FloMah.</p>
+    <p><strong>Disclaimer :</strong> Ce site est une interface de navigation simplifiée vers les automatisations disponibles sur GitHub. Aucune garantie n’est donnée sur la sécurité ou la mise à jour des scripts fournis.</p>
   </div>
+
+  <h1>📂 Catégories d'automatisations disponibles</h1>
+  <div class="container">
+
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/AI_Research_RAG_and_Data_Analysis">AI Research / RAG / Data Analysis</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Airtable">Airtable</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Database_and_Storage">Database and Storage</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Discord">Discord</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Forms_and_Surveys">Forms and Surveys</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Gmail_and_Email_Automation">Gmail and Email Automation</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Google_Drive_and_Google_Sheets">Google Drive & Sheets</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/HR_and_Recruitment">HR and Recruitment</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Instagram_Twitter_Social_Media">Social Media</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Notion">Notion</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/OpenAI_and_LLMs">OpenAI and LLMs</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Other">Other</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Other_Integrations_and_Use_Cases">Other Integrations</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/PDF_and_Document_Processing">PDF and Document Processing</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Slack">Slack</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/Telegram">Telegram</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/WhatsApp">WhatsApp</a></h2></div>
+    <div class="category"><h2><a href="https://github.com/FloMah/awesome-n8n-templates/tree/main/WordPress">WordPress</a></h2></div>
+
+  </div>
+
 </body>
 </html>
